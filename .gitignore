@@ -32,11 +32,9 @@ checkpoints/
 *.pth
 *.onnx
 
-# Data and report outputs that should not be tracked if large
+# Data cache
 data/raw/*.csv
 data/raw/*.npy
-reports/figures/*.png
-reports/metrics_summary.json
 
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints
