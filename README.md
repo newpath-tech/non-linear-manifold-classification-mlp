@@ -1,6 +1,6 @@
 # Non-Linear Binary Classification: Multi-Layer Perceptron Benchmark on Interleaved Manifolds
 
-**Empirical Deep Learning Architecture & 3D Topological Manifold Synthesis**
+An empirical deep learning architecture and 3D topological manifold synthesis benchmark for non-linear decision boundary analysis.
 
 [![Python Version](https://img.shields.io/badge/Python-3.10%20%7C%203.11-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.5.1%2BCUDA-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://pytorch.org/)
