@@ -1,0 +1,65 @@
+{
+    "Linear Perceptron (Baseline)": {
+        "accuracy": 0.8844444444444445,
+        "precision": 0.8777292576419214,
+        "recall": 0.8933333333333333,
+        "f1_score": 0.8854625550660793,
+        "roc_auc": 0.9632987654320988,
+        "pr_auc": 0.9630075699258481,
+        "brier_score": 0.07793195207875037,
+        "log_loss": 0.25150843979507637,
+        "confusion_matrix": [
+            [
+                197,
+                28
+            ],
+            [
+                24,
+                201
+            ]
+        ],
+        "parameters": 3
+    },
+    "Shallow MLP (1-Hidden Layer)": {
+        "accuracy": 0.9911111111111112,
+        "precision": 0.982532751091703,
+        "recall": 1.0,
+        "f1_score": 0.9911894273127754,
+        "roc_auc": 0.9998814814814815,
+        "pr_auc": 0.9998817390184163,
+        "brier_score": 0.007266807547312443,
+        "log_loss": 0.02699453820832106,
+        "confusion_matrix": [
+            [
+                221,
+                4
+            ],
+            [
+                0,
+                225
+            ]
+        ],
+        "parameters": 65
+    },
+    "Deep Modular MLP (Proposed)": {
+        "accuracy": 0.9911111111111112,
+        "precision": 0.982532751091703,
+        "recall": 1.0,
+        "f1_score": 0.9911894273127754,
+        "roc_auc": 0.9998814814814815,
+        "pr_auc": 0.9998817390184163,
+        "brier_score": 0.007336443928187118,
+        "log_loss": 0.02672641399234673,
+        "confusion_matrix": [
+            [
+                221,
+                4
+            ],
+            [
+                0,
+                225
+            ]
+        ],
+        "parameters": 3041
+    }
+}

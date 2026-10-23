@@ -1,0 +1,46 @@
+# Centralized Hyperparameter & Experiment Configuration
+experiment:
+  name: "make_moons_ann_benchmark"
+  seed: 42
+
+data:
+  n_samples: 3000
+  noise: 0.15
+  train_ratio: 0.70
+  val_ratio: 0.15
+  test_ratio: 0.15
+  shuffle: true
+
+model:
+  architecture: "DeepModularMLP"  # ["LinearPerceptron", "ShallowMLP", "DeepModularMLP"]
+  input_dim: 2
+  hidden_dims: [64, 32, 16]
+  output_dim: 1
+  activation: "gelu"             # ["relu", "leaky_relu", "gelu", "tanh"]
+  dropout_rate: 0.10
+  use_layer_norm: true
+
+training:
+  epochs: 150
+  batch_size: 64
+  learning_rate: 0.005
+  weight_decay: 0.0001
+  early_stopping_patience: 20
+  min_delta: 0.0001
+  lr_scheduler: "cosine"         # ["cosine", "plateau", "none"]
+  pin_memory: true
+  num_workers: 0                 # Direct in-process GPU DMA without CPU IPC overhead
+
+hardware:
+  preferred_device: "cuda"
+  gpu_id: 0
+
+visualization:
+  grid_resolution: 600           # 600x600 = 360,000 points evaluated in parallel on GPU
+  contour_levels: 30
+  dpi: 300
+
+paths:
+  figures_dir: "reports/figures"
+  checkpoints_dir: "checkpoints"
+  metrics_file: "reports/metrics_summary.json"
