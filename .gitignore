@@ -1,12 +1,29 @@
-# Byte-compiled / optimized / DLL files
+# ==============================================================================
+# Security & Sensitive Files (STRICTLY FORBIDDEN FROM REPOSITORY)
+# ==============================================================================
+.env
+.env.*
+*.env
+*.key
+*.pem
+*.cert
+*.crt
+*.pfx
+*.p12
+*.token
+*secret*
+*credential*
+credentials.json
+token.json
+client_secrets.json
+
+# ==============================================================================
+# Python Bytecode & Compilation Artifacts
+# ==============================================================================
 __pycache__/
 *.py[cod]
 *$py.class
-
-# C extensions
 *.so
-
-# Distribution / packaging
 .Python
 build/
 develop-eggs/
@@ -26,36 +43,79 @@ share/python-wheels/
 *.egg
 MANIFEST
 
-# PyTorch checkpoints and models
+# ==============================================================================
+# Model Weights, Binary Checkpoints & Serialized Objects (Large Files)
+# ==============================================================================
 checkpoints/
 *.pt
 *.pth
+*.bin
+*.safetensors
 *.onnx
+*.ckpt
+*.h5
+*.pkl
+*.pickle
+*.joblib
 
-# Data cache
-data/raw/*.csv
-data/raw/*.npy
+# ==============================================================================
+# Raw Data & Database Dumps
+# ==============================================================================
+data/raw/*
+data/processed/*
+*.csv
+*.tsv
+*.parquet
+*.feather
+*.sqlite
+*.sqlite3
+*.db
 
-# Jupyter Notebook checkpoints
-.ipynb_checkpoints
+# ==============================================================================
+# Testing, Coverage & Profiling Caches
+# ==============================================================================
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+.ruff_cache/
+.mypy_cache/
+
+# ==============================================================================
+# Jupyter Notebook Caches
+# ==============================================================================
+.ipynb_checkpoints/
 */.ipynb_checkpoints/*
 
-# Environments
-.env
-.venv
+# ==============================================================================
+# Virtual Environments
+# ==============================================================================
+.env/
+.venv/
 env/
 venv/
 ENV/
 env.bak/
 venv.bak/
 
-# IDE files
+# ==============================================================================
+# Operating System & Editor Metadata
+# ==============================================================================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+Desktop.ini
+
 .vscode/
 .idea/
 *.swp
 *.swo
-
-# Testing and coverage
-.pytest_cache/
-.coverage
-htmlcov/
+*.sublime-project
+*.sublime-workspace
