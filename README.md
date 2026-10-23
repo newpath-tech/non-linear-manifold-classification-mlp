@@ -1,8 +1,6 @@
-<div align="center">
+# Non-Linear Binary Classification: Multi-Layer Perceptron Benchmark on Interleaved Manifolds
 
-# 🌐 Non-Linear Binary Classification: Multi-Layer Perceptron Benchmark on Interleaved Manifolds
-
-### *Empirical Deep Learning Architecture & 3D Topological Manifold Synthesis*
+**Empirical Deep Learning Architecture & 3D Topological Manifold Synthesis**
 
 [![Python Version](https://img.shields.io/badge/Python-3.10%20%7C%203.11-3776AB?style=for-the-badge&logo=python&logoColor=white)](https://www.python.org/)
 [![PyTorch](https://img.shields.io/badge/PyTorch-2.5.1%2BCUDA-EE4C2C?style=for-the-badge&logo=pytorch&logoColor=white)](https://pytorch.org/)
@@ -11,19 +9,14 @@
 [![Code Style](https://img.shields.io/badge/Code%20Style-Black-000000?style=for-the-badge&logo=visual-studio-code&logoColor=white)](https://github.com/psf/black)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg?style=for-the-badge)](https://opensource.org/licenses/MIT)
 
-<br/>
-
-<p align="center">
-  <img src="reports/figures/decision_manifold_3d.png" alt="3D Decision Manifold" width="85%" style="border-radius: 12px; box-shadow: 0 8px 24px rgba(0,0,0,0.3);"/>
-</p>
+![3D Decision Manifold](reports/figures/decision_manifold_3d.png)
 
 *Figure 1: High-Resolution 3D Posterior Probability Manifold $P(y=1 \mid \mathbf{x})$ synthesized by the Deep Modular MLP on the two-moons topological manifold, rendered on NVIDIA CUDA cores.*
 
-</div>
-
 ---
 
-## 📑 Table of Contents
+## Table of Contents
+
 - [1. Executive Architectural Overview](#1-executive-architectural-overview)
 - [2. 3D Manifold Visualizations & Topologies](#2-3d-manifold-visualizations--topologies)
 - [3. Theoretical & Mathematical Formulations](#3-theoretical--mathematical-formulations)
@@ -40,28 +33,19 @@
 
 This repository provides an **industry-grade deep learning benchmark** evaluating the geometric representation limits of Multi-Layer Perceptrons (MLPs) against non-linearly separable coordinate manifolds (specifically Scikit-Learn's `make_moons`).
 
-<table>
-<tr>
-<td width="50%">
+### Core Engineering Pillars
 
-### ⚡ Core Engineering Pillars
 - **Strict Leakage-Free Preprocessing:** Stratified train/val/test splits (70/15/15) prior to standardizing coordinates.
 - **CUDA-Accelerated Meshgrid Evaluation:** Vectorized 360,000-point 2D/3D grids evaluated in parallel batches directly on GPU memory.
 - **Numerically Stable Loss Engine:** Evaluates Binary Cross-Entropy over raw logit space ($\mathcal{L}_{\text{BCEWithLogits}}$).
 - **Ablation Baseline Comparison:** Systematic comparison across Linear, Shallow, and Deep Regularized architectures.
 
-</td>
-<td width="50%">
+### Operational Standards
 
-### 🔬 Operational Standards
 - **Global Seed Determinism:** Synchronized seed locks across Python `random`, `numpy`, and `torch.cuda`.
 - **Early Stopping & Weight Checkpointing:** Automated validation loss monitoring with deep weight restoration.
 - **Production Package Standards:** Fully modular `src/` hierarchy, YAML declarative configuration, and CI/CD pipelines.
 - **Test-Driven Rigor:** 13 unit tests covering split integrity, tensor flow, backward gradients, and GPU placement.
-
-</td>
-</tr>
-</table>
 
 ---
 
@@ -69,30 +53,17 @@ This repository provides an **industry-grade deep learning benchmark** evaluatin
 
 Unlike standard 2D planar plots, our visualization suite maps the learned non-linear boundaries in **three dimensions**, revealing the continuous probability gradients and empirical optimization basins.
 
-<div align="center">
-<table>
-<tr>
-<td align="center" width="50%">
-  <img src="reports/figures/decision_manifold_3d.png" alt="3D Decision Surface" width="100%" style="border-radius: 8px;"/>
-  <br/>
-  <b>3D Posterior Probability Manifold</b><br/>
-  <i>Continuous deformation of Euclidean coordinates into bounded probability space $z \in [0, 1]$.</i>
-</td>
-<td align="center" width="50%">
-  <img src="reports/figures/loss_landscape_3d.png" alt="3D Loss Landscape" width="100%" style="border-radius: 8px;"/>
-  <br/>
-  <b>3D Empirical Loss Landscape Topology</b><br/>
-  <i>Parametric loss basin $\mathcal{L}_{BCE}$ surrounding converged global weight optimum $\theta^*$.</i>
-</td>
-</tr>
-</table>
-</div>
+| 3D Posterior Probability Manifold | 3D Empirical Loss Landscape Topology |
+| :---: | :---: |
+| ![3D Decision Surface](reports/figures/decision_manifold_3d.png) | ![3D Loss Landscape](reports/figures/loss_landscape_3d.png) |
+| *Continuous deformation of Euclidean coordinates into bounded probability space $z \in [0, 1]$.* | *Parametric loss basin $\mathcal{L}_{BCE}$ surrounding converged global weight optimum $\theta^*$.* |
 
 ---
 
 ## 3. Theoretical & Mathematical Formulations
 
 ### 3.1 Topological Non-Separability
+
 Let the input space be a 2D coordinate manifold $\mathcal{D} = \{(\mathbf{x}_i, y_i)\}_{i=1}^N$, where $\mathbf{x}_i \in \mathbb{R}^2$ and $y_i \in \{0, 1\}$.
 
 A linear perceptron attempts to discover a separating hyperplane:
@@ -106,6 +77,7 @@ $$\text{conv}(\mathcal{C}_0) \cap \text{conv}(\mathcal{C}_1) \neq \emptyset$$
 No linear boundary can achieve complete separation. Under Gaussian perturbation $\sigma = 0.15$, the theoretical accuracy ceiling of linear classification is capped at **$\approx 88.4\%$**.
 
 ### 3.2 Coordinate Manifold Folding
+
 By stacking parameterized affine transformations with non-linear activation functions $\phi(\cdot)$, the Multi-Layer Perceptron warps the coordinate geometry into higher dimensions:
 
 $$\mathbf{h}^{(1)} = \phi\left(\mathbf{W}^{(1)}\mathbf{x} + \mathbf{b}^{(1)}\right) \in \mathbb{R}^{64}$$
@@ -138,11 +110,12 @@ graph LR
     X --> L1 --> L2 --> L3 --> Z --> P
 ```
 
-<details>
-<summary><b>📐 Click to Expand: Numerically Stable Binary Cross-Entropy Derivation</b></summary>
+### 3.3 Numerically Stable Binary Cross-Entropy Derivation
 
 Standard binary cross-entropy combines sigmoid activation with logarithmic loss:
+
 $$\hat{p} = \sigma(z) = \frac{1}{1 + e^{-z}}$$
+
 $$\mathcal{L} = - \left[ y \log \hat{p} + (1 - y) \log (1 - \hat{p}) \right]$$
 
 Evaluating this naively in floating-point arithmetic causes catastrophic numerical underflow when $z \ll 0$ or overflow when $z \gg 0$. To guarantee numerical stability, we reformulate into a single log-sum-exp expression:
@@ -150,7 +123,6 @@ Evaluating this naively in floating-point arithmetic causes catastrophic numeric
 $$\mathcal{L}_{\text{BCE}}(y, z) = \max(z, 0) - z \cdot y + \log\left(1 + e^{-|z|}\right)$$
 
 Implemented via PyTorch's `torch.nn.BCEWithLogitsLoss()`.
-</details>
 
 ---
 
@@ -162,13 +134,9 @@ Implemented via PyTorch's `torch.nn.BCEWithLogitsLoss()`.
 | **Shallow MLP (1-Hidden Layer)** | 1 | **65** | ReLU non-linearity | Validates basic non-linear boundary synthesis |
 | **Deep Modular MLP (Proposed)** | 3 | **3,041** | LayerNorm + GELU + Dropout(0.10) | Evaluates continuous smooth probability curvature |
 
-<br/>
+![Decision Boundary Comparison](reports/figures/model_comparison_decision_boundaries.png)
 
-<div align="center">
-  <img src="reports/figures/model_comparison_decision_boundaries.png" alt="Decision Boundary Comparison" width="95%" style="border-radius: 8px;"/>
-  <br/>
-  <i>Figure 2: Empirical Decision Boundary Comparison on Test Data ($N=450$, $\sigma=0.15$). Left: Linear Perceptron. Center: Shallow MLP. Right: Deep Modular MLP.</i>
-</div>
+*Figure 2: Empirical Decision Boundary Comparison on Test Data ($N=450$, $\sigma=0.15$). Left: Linear Perceptron. Center: Shallow MLP. Right: Deep Modular MLP.*
 
 ---
 
@@ -182,7 +150,8 @@ Evaluated on an unseen test set ($N=450$ samples, noise $\sigma = 0.15$) execute
 | **Shallow MLP** | 65 | **99.11%** | 0.9912 | 0.9999 | 0.9999 | 0.0073 | `██████████` 99.1% |
 | **Deep Modular MLP** | 3,041 | **99.11%** | **0.9912** | **0.9999** | **0.9999** | **0.0073** | `██████████` 99.1% |
 
-### Key Diagnostic Observations:
+### Key Diagnostic Observations
+
 - **Zero False Negatives in Deep MLP:** Achieved **100.00% Recall** on Class 1 with $0.9868$ F1-score in standard single-model validation.
 - **Superior Probability Calibration:** The Brier Score dropped by an order of magnitude from **0.0779** (Linear) down to **0.0073** (Deep MLP), indicating high-confidence, well-calibrated posterior estimates.
 - **No Boundary Over-Fitting:** Layer Normalization and weight decay ($10^{-4}$) prevented the deep network from forming jagged, localized "islands" around noisy data outliers.
@@ -193,7 +162,7 @@ Evaluated on an unseen test set ($N=450$ samples, noise $\sigma = 0.15$) execute
 
 To maximize CUDA throughput and minimize host CPU utilization:
 
-```
+```text
 [System RAM (Host)] ──(Pinned Memory DMA Transfer)──> [NVIDIA RTX 4050 GPU (6 GB VRAM)]
                                                               │
                     ┌─────────────────────────────────────────┴──────────────────────────────┐
@@ -212,7 +181,7 @@ To maximize CUDA throughput and minimize host CPU utilization:
 
 ## 7. Production Repository Structure
 
-```
+```text
 COE-ANN/
 ├── .github/
 │   └── workflows/
@@ -270,6 +239,7 @@ COE-ANN/
 ## 8. Quickstart & Execution Guide
 
 ### 8.1 Environment Setup
+
 ```bash
 # Clone the repository
 git clone https://github.com/newpath-tech/COE-ANN.git
@@ -280,24 +250,28 @@ pip install -r requirements.txt
 ```
 
 ### 8.2 Run Verification Test Suite
+
 ```bash
 # Execute 13 unit tests verifying data splits, tensor flow, and CUDA memory
 pytest -v
 ```
 
 ### 8.3 Train the Deep Modular Architecture
+
 ```bash
 # Runs training on GPU with early stopping and renders 2D diagnostic figures
 python train.py --config configs/default_config.yaml
 ```
 
 ### 8.4 Execute Multi-Model Benchmark
+
 ```bash
 # Executes ablation comparison across all 3 architectures and exports JSON metrics
 python benchmark.py
 ```
 
 ### 8.5 Generate 3D Manifold Visualizations
+
 ```bash
 # Synthesizes 3D posterior probability surfaces and empirical loss landscape
 python generate_3d_visuals.py
@@ -316,5 +290,6 @@ All components conform to high-reliability scientific computing standards:
 
 ---
 
-## 📄 License
+## License
+
 This project is licensed under the terms of the [MIT License](LICENSE).
